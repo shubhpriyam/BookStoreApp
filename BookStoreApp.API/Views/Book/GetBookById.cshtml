@@ -1,0 +1,63 @@
+﻿@model BookModel
+@{
+    ViewData["title"] = @Model.Title;
+}
+ 
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img class="viewdetailsimage" src=@Model.Imageurl>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>@Model.Title</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Author : <span class="btn-link" style="color:blue">@Model.Author</span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @*@if (@Model.UpdatedDate.ToString() == "1/1/0001 12:00:00 AM")*@
+                    @if (@Model.UpdatedDate.ToString() == "01-01-0001 0:00:00")
+                    {
+                        <p>Created : @Model.CreatedDate </p>
+                    }
+                    else
+                    {                  
+                        <p>Updated : @Model.UpdatedDate</p>
+                    }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>@Model.Description</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-primary">Read Book</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-danger">Buy</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="btn-group">
+                        <a asp-controller="book" asp-action="getallbooks" class="btn btn-dark">Back</a>
+                        <a asp-controller="book" asp-action="UpdateBookById" asp-route-id="@Model.Id" class="btn btn-outline-info">Update Book</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+

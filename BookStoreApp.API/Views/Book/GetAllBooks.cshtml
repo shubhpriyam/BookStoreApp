@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "All Books";
+}
+@*@model IEnumerable<BookModel>*@
+
+<div class="container">
+    <div class="searchbook">
+        <form class="form-inline my-2 my-lg-0" asp-controller="book" asp-action="getallbooks" method="get">
+            <input class="form-control mr-sm-2" name="title" type="search" placeholder="Search book" aria-label="Search">
+            <div class="btn-group">
+                <input type="submit" value="search" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+    <!--Card format-->
+    @*<div class="row">
+        @foreach (var item in ViewBag.bookdata)
+        {
+            <div id="Bookcard" class="col-md-4 col-md-offset-2 mt-1 mb-1">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src=@item.Imageurl />
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Title</h5>
+                        <h6 class="card-text">@item.Author</h6>
+                        <a asp-route="Bookdetailsbyid" asp-route-id="@item.Id" class="btn btn-primary">View Book</a>
+                        <a asp-controller="book" asp-action="DeleteBookById" asp-route-id="@item.Id" class="btn btn-danger">Detele Book</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>*@
+
+    <!--List Format-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:10%;">
+                    <h4 class="card-title">Image</h4>
+                </th>
+                <th style="width:20%;">
+                    <h4 class="card-title"><a asp-controller="book" asp-action="GetAllBooks" asp-route-pageNumber=@ViewBag.pageNumber asp-route-sortOrder="@ViewBag.sortParam" >Title</a></h4>
+                </th>
+                <th style="width:10%;">
+                    <h4 class="card-title">Author</h4>
+                </th>
+                
+                <th style="width:10%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ViewBag.bookdata)
+            {
+            <tr>
+                <td>
+                    <a asp-route="Bookdetailsbyid" asp-route-id="@item.Id"><img class="card-img-top" src=@item.Imageurl width="100" height="100" /></a>
+                </td>
+                <td>
+                    <h5 class="card-title">@item.Title</h5>
+                </td>
+                <td>
+                    <h5 class="card-text">@item.Author</h5>
+                </td>
+                <td>
+                    <a asp-route="Bookdetailsbyid" asp-route-id="@item.Id" class="btn btn-primary">View</a>
+                    <a asp-controller="book" asp-action="DeleteBookById" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    @*@Html.RouteLink("View", "Bookdetailsbyid", new { id = item.Id }) |
+                    @Html.ActionLink("Edit", "UpdateBookById", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "DeleteBookById", new { id = item.Id })*@
+                </td>
+            </tr>
+                //popup to delete a book
+                #region
+                @*<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <a asp-controller="book" asp-action="DeleteBookById" asp-route-id="@item.Id" class="btn btn-danger">Yes</a>
+                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">No</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                #endregion
+            }
+        </tbody>
+    </table>
+
+    <cs-pager cs-paging-pagenumber=ViewBag.pageNumber
+              cs-paging-totalitems=ViewBag.TotalCount
+              cs-paging-pagesize=ViewBag.pageSize
+              cs-pagenumber-param="pageNumber"
+              asp-controller="Book"
+              asp-action="GetAllBooks"
+              asp-route-sortOrder =ViewBag.CurrentSortOrder
+              cs-pager-li-current-class="page-item active"
+              cs-pager-li-other-class="page-item"
+              cs-pager-li-non-active-class="page-item disabled"
+              cs-pager-link-current-class="page-link"
+              cs-pager-link-other-class="page-link"></cs-pager>
+</div>

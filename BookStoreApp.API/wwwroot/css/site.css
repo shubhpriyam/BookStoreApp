@@ -1,0 +1,62 @@
+﻿body {
+}
+.logo {
+    height: 100px;
+    width: 100px;
+}
+.jumbotron {
+    height: 250px;
+    background: none;
+}
+.jumbotron:hover{
+    color: darkred;
+}
+.footer {
+    position:absolute;
+    line-height:60px;
+    width :100%;
+    white-space:nowrap;
+    margin-top:20px;
+}
+.searchbook {
+    margin: 10px 0px 10px 0px;
+}
+.viewdetailsimage {
+    width: 450px;
+    height: 550px;
+}
+.card-img-top {
+    /*height: 240px;
+    width: 287px;*/
+    height: 100px;
+    width:100px;
+}
+#Bookcard{
+    margin-top:10px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.drophover{
+    color:  darkblue;
+}
+.drophover:hover{
+    color: brown;
+}
